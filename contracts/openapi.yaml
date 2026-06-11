@@ -1,87 +1,115 @@
 openapi: 3.0.3
 
 info:
-  title: Bookly API
+  title: Bookly Provider API
   version: 1.0.0
-  description: |
-    API for discovering professionals and booking appointments.
+  description: API contracts for provider discovery and profiles
 
 paths:
   /api/providers:
     get:
-      summary: Get all public providers
-      description: Returns a list of providers available for booking.
+      summary: List all providers
+      description: Returns public profiles of all available providers
 
       responses:
         "200":
-          description: List of provider cards
+          description: List of provider profiles
 
           content:
             application/json:
-
               schema:
                 type: array
 
                 items:
-                  $ref: "#/components/schemas/ProviderCard"
+                  $ref: "#/components/schemas/Provider"
 
               examples:
                 providers:
+                  summary: Example list of providers
+
                   value:
-                    - id: provider_001
-                      slug: sarah-williams
-                      name: Sarah Williams
-                      title: Fitness Coach
-                      profileImage: /images/sarah.jpg
+                    - slug: sarah-williams
+                      fullName: Sarah Williams
+                      title: Senior Fitness Coach
+                      bio: Helping people achieve sustainable fitness goals.
                       experienceYears: 8
+                      skills:
+                        - Strength Training
+                        - Weight Loss
+                        - Nutrition
+                      location: New York
+                      profileImage: https://example.com/images/sarah.jpg
+                      pricePerSession: 75
 
-                    - id: provider_002
-                      slug: david-lee
-                      name: David Lee
-                      title: Career Mentor
-                      profileImage: /images/david.jpg
+                    - slug: david-chen
+                      fullName: David Chen
+                      title: Career Consultant
+                      bio: Helping professionals transition into better careers.
                       experienceYears: 12
-
-        "500":
-          description: Failed to retrieve providers
-
+                      skills:
+                        - Career Planning
+                        - Resume Reviews
+                        - Interview Coaching
+                      location: San Francisco
+                      profileImage: https://example.com/images/david.jpg
+                      pricePerSession: 100
 
 components:
   schemas:
-
-    ProviderCard:
+    Provider:
       type: object
 
       required:
-        - id
         - slug
-        - name
+        - fullName
         - title
-        - profileImage
+        - bio
         - experienceYears
+        - skills
+        - location
+        - profileImage
+        - pricePerSession
 
       properties:
-
-        id:
-          type: string
-          example: provider_001
-
         slug:
           type: string
           example: sarah-williams
 
-        name:
+        fullName:
           type: string
           example: Sarah Williams
 
         title:
           type: string
-          example: Fitness Coach
+          example: Senior Fitness Coach
 
-        profileImage:
+        bio:
           type: string
-          example: /images/sarah.jpg
+          example: Helping people achieve sustainable fitness goals.
 
         experienceYears:
           type: integer
           example: 8
+
+        skills:
+          type: array
+
+          items:
+            type: string
+
+          example:
+            - Strength Training
+            - Nutrition
+
+        location:
+          type: string
+          example: New York
+
+        profileImage:
+          type: string
+          format: uri
+          example: https://example.com/images/sarah.jpg
+
+        pricePerSession:
+          type: number
+          example: 75
