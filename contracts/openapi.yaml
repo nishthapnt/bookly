@@ -3,32 +3,85 @@ openapi: 3.0.3
 info:
   title: Bookly API
   version: 1.0.0
-  description: API for booking appointments with professionals
+  description: |
+    API for discovering professionals and booking appointments.
 
 paths:
   /api/providers:
     get:
-      summary: Get all public provider profiles
+      summary: Get all public providers
+      description: Returns a list of providers available for booking.
+
       responses:
         "200":
-          description: A list of providers
+          description: List of provider cards
+
           content:
             application/json:
+
               schema:
                 type: array
+
                 items:
-                  type: object
-                  required:
-                    - slug
-                    - name
-                    - title
-                    - profileImage
-                  properties:
-                    slug:
-                      type: string
-                    name:
-                      type: string
-                    title:
-                      type: string
-                    profileImage:
-                      type: string
+                  $ref: "#/components/schemas/ProviderCard"
+
+              examples:
+                providers:
+                  value:
+                    - id: provider_001
+                      slug: sarah-williams
+                      name: Sarah Williams
+                      title: Fitness Coach
+                      profileImage: /images/sarah.jpg
+                      experienceYears: 8
+
+                    - id: provider_002
+                      slug: david-lee
+                      name: David Lee
+                      title: Career Mentor
+                      profileImage: /images/david.jpg
+                      experienceYears: 12
+
+        "500":
+          description: Failed to retrieve providers
+
+
+components:
+  schemas:
+
+    ProviderCard:
+      type: object
+
+      required:
+        - id
+        - slug
+        - name
+        - title
+        - profileImage
+        - experienceYears
+
+      properties:
+
+        id:
+          type: string
+          example: provider_001
+
+        slug:
+          type: string
+          example: sarah-williams
+
+        name:
+          type: string
+          example: Sarah Williams
+
+        title:
+          type: string
+          example: Fitness Coach
+
+        profileImage:
+          type: string
+          example: /images/sarah.jpg
+
+        experienceYears:
+          type: integer
+          example: 8
