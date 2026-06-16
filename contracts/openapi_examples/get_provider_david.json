@@ -1,0 +1,25 @@
+{
+  "http-request": {
+    "method": "GET",
+    "path": "/api/providers/david-chen"
+  },
+
+  "http-response": {
+    "status": 200,
+    "body": {
+      "slug": "david-chen",
+      "fullName": "David Chen",
+      "title": "Senior Career Consultant",
+      "bio": "Helping professionals navigate career transitions, salary negotiations, and long-term growth strategies.",
+      "experienceYears": 12,
+      "skills": [
+        "Career Growth",
+        "Interview Coaching",
+        "Leadership"
+      ],
+      "location": "San Francisco",
+      "profileImage": "https://example.com/images/david.jpg",
+      "pricePerSession": 120
+    }
+  }
+}

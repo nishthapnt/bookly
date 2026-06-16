@@ -5,7 +5,9 @@ info:
   version: 1.0.0
   description: API contracts for provider discovery and profiles
 
+
 paths:
+
   /api/providers:
     get:
       summary: List all providers
@@ -19,43 +21,40 @@ paths:
             application/json:
               schema:
                 type: array
-
                 items:
                   $ref: "#/components/schemas/Provider"
 
-              examples:
-                providers:
-                  summary: Example list of providers
 
-                  value:
-                    - slug: sarah-williams
-                      fullName: Sarah Williams
-                      title: Senior Fitness Coach
-                      bio: Helping people achieve sustainable fitness goals.
-                      experienceYears: 8
-                      skills:
-                        - Strength Training
-                        - Weight Loss
-                        - Nutrition
-                      location: New York
-                      profileImage: https://example.com/images/sarah.jpg
-                      pricePerSession: 75
+  /api/providers/{slug}:
+    get:
+      summary: Get provider by slug
+      description: Returns the public profile of a specific provider
 
-                    - slug: david-chen
-                      fullName: David Chen
-                      title: Career Consultant
-                      bio: Helping professionals transition into better careers.
-                      experienceYears: 12
-                      skills:
-                        - Career Planning
-                        - Resume Reviews
-                        - Interview Coaching
-                      location: San Francisco
-                      profileImage: https://example.com/images/david.jpg
-                      pricePerSession: 100
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          description: Unique identifier of the provider
+
+          schema:
+            type: string
+
+
+      responses:
+        "200":
+          description: Provider profile
+
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Provider"
+
+
 
 components:
+
   schemas:
+
     Provider:
       type: object
 
@@ -70,46 +69,55 @@ components:
         - profileImage
         - pricePerSession
 
+
       properties:
+
         slug:
           type: string
-          example: sarah-williams
+          description: URL-friendly unique identifier for the provider
+
 
         fullName:
           type: string
-          example: Sarah Williams
+          description: Provider's full name
+
 
         title:
           type: string
-          example: Senior Fitness Coach
+          description: Professional title or specialization
+
 
         bio:
           type: string
-          example: Helping people achieve sustainable fitness goals.
+          description: Public professional biography
+
 
         experienceYears:
           type: integer
-          example: 8
+          minimum: 0
+          description: Years of professional experience
+
 
         skills:
           type: array
+          description: Areas of expertise
 
           items:
             type: string
 
-          example:
-            - Strength Training
-            - Nutrition
 
         location:
           type: string
-          example: New York
+          description: Provider's location
+
 
         profileImage:
           type: string
           format: uri
-          example: https://example.com/images/sarah.jpg
+          description: Public URL of the provider profile image
+
 
         pricePerSession:
           type: number
-          example: 75
+          minimum: 0
+          description: Cost per appointment session

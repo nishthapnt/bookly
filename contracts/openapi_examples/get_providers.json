@@ -1,0 +1,43 @@
+{
+  "http-request": {
+    "method": "GET",
+    "path": "/api/providers"
+  },
+
+  "http-response": {
+    "status": 200,
+    "body": [
+      {
+        "slug": "sarah-williams",
+        "fullName": "Sarah Williams",
+        "title": "Senior Fitness Coach",
+        "bio": "Helping people achieve sustainable fitness goals.",
+        "experienceYears": 8,
+        "skills": [
+          "Strength Training",
+          "Weight Loss",
+          "Nutrition"
+        ],
+        "location": "New York",
+        "profileImage": "https://example.com/images/sarah.jpg",
+        "pricePerSession": 75
+      },
+
+      {
+        "slug": "david-chen",
+        "fullName": "David Chen",
+        "title": "Career Consultant",
+        "bio": "Helping professionals transition into better careers.",
+        "experienceYears": 12,
+        "skills": [
+          "Career Planning",
+          "Resume Reviews",
+          "Interview Coaching"
+        ],
+        "location": "San Francisco",
+        "profileImage": "https://example.com/images/david.jpg",
+        "pricePerSession": 100
+      }
+    ]
+  }
+}

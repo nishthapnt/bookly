@@ -1,0 +1,25 @@
+{
+  "http-request": {
+    "method": "GET",
+    "path": "/api/providers/sarah-williams"
+  },
+
+  "http-response": {
+    "status": 200,
+    "body": {
+      "slug": "sarah-williams",
+      "fullName": "Sarah Williams",
+      "title": "Senior Fitness Coach",
+      "bio": "Helping people achieve sustainable fitness goals.",
+      "experienceYears": 8,
+      "skills": [
+        "Strength Training",
+        "Weight Loss",
+        "Nutrition"
+      ],
+      "location": "New York",
+      "profileImage": "https://example.com/images/sarah.jpg",
+      "pricePerSession": 75
+    }
+  }
+}
