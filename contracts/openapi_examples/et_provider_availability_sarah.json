@@ -1,0 +1,33 @@
+{
+  "http-request": {
+    "method": "GET",
+    "path": "/api/providers/sarah-williams/availability"
+  },
+
+  "http-response": {
+    "status": 200,
+    "body": [
+      {
+        "id": "sarah-slot-001",
+        "date": "2026-06-20",
+        "startTime": "09:00",
+        "endTime": "10:00",
+        "available": true
+      },
+      {
+        "id": "sarah-slot-002",
+        "date": "2026-06-20",
+        "startTime": "11:00",
+        "endTime": "12:00",
+        "available": true
+      },
+      {
+        "id": "sarah-slot-003",
+        "date": "2026-06-20",
+        "startTime": "14:00",
+        "endTime": "15:00",
+        "available": false
+      }
+    ]
+  }
+}

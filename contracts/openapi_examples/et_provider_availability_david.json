@@ -1,0 +1,33 @@
+{
+  "http-request": {
+    "method": "GET",
+    "path": "/api/providers/david-chen/availability"
+  },
+
+  "http-response": {
+    "status": 200,
+    "body": [
+      {
+        "id": "david-slot-001",
+        "date": "2026-06-21",
+        "startTime": "08:00",
+        "endTime": "09:00",
+        "available": true
+      },
+      {
+        "id": "david-slot-002",
+        "date": "2026-06-21",
+        "startTime": "13:00",
+        "endTime": "14:00",
+        "available": true
+      },
+      {
+        "id": "david-slot-003",
+        "date": "2026-06-22",
+        "startTime": "15:00",
+        "endTime": "16:00",
+        "available": false
+      }
+    ]
+  }
+}
