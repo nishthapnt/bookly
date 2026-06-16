@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { getProviderBySlug } from "@/lib/api/providers";
+import { getAvailability } from "@/lib/api/availability";
 
 import ProviderHeader from "@/components/providers/ProviderHeader";
 import ProviderAbout from "@/components/providers/ProviderAbout";
@@ -20,7 +21,11 @@ export default async function ProviderPage({
 }: ProviderPageProps) {
   const { slug } = await params;
 
-  const provider = await getProviderBySlug(slug);
+
+  const [provider, availability] = await Promise.all([
+    getProviderBySlug(slug),
+    getAvailability(slug),
+  ]);
 
 
   if (!provider) {
@@ -38,7 +43,7 @@ export default async function ProviderPage({
 
         <ProviderSkills provider={provider} />
 
-        <ProviderAvailability />
+        <ProviderAvailability slots={availability} />
 
       </div>
     </main>
