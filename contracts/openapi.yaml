@@ -5,7 +5,6 @@ info:
   version: 1.0.0
   description: API contracts for provider discovery and profiles
 
-
 paths:
 
   /api/providers:
@@ -16,14 +15,12 @@ paths:
       responses:
         "200":
           description: List of provider profiles
-
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: "#/components/schemas/Provider"
-
 
   /api/providers/{slug}:
     get:
@@ -35,21 +32,39 @@ paths:
           in: path
           required: true
           description: Unique identifier of the provider
-
           schema:
             type: string
-
 
       responses:
         "200":
           description: Provider profile
-
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Provider"
 
+  /api/providers/{slug}/availability:
+    get:
+      summary: Get provider availability
+      description: Returns available time slots for a provider
 
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          description: Unique provider identifier
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: Provider availability returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AvailabilitySlot"
 
 components:
 
@@ -69,55 +84,74 @@ components:
         - profileImage
         - pricePerSession
 
-
       properties:
 
         slug:
           type: string
-          description: URL-friendly unique identifier for the provider
-
+          description: URL-friendly unique identifier of the provider
 
         fullName:
           type: string
           description: Provider's full name
 
-
         title:
           type: string
           description: Professional title or specialization
 
-
         bio:
           type: string
           description: Public professional biography
-
 
         experienceYears:
           type: integer
           minimum: 0
           description: Years of professional experience
 
-
         skills:
           type: array
           description: Areas of expertise
-
           items:
             type: string
-
 
         location:
           type: string
           description: Provider's location
-
 
         profileImage:
           type: string
           format: uri
           description: Public URL of the provider profile image
 
-
         pricePerSession:
           type: number
           minimum: 0
           description: Cost per appointment session
+
+    AvailabilitySlot:
+      type: object
+
+      properties:
+        id:
+          type: string
+
+        date:
+          type: string
+          example: "2026-06-20"
+
+        startTime:
+          type: string
+          example: "09:00"
+
+        endTime:
+          type: string
+          example: "10:00"
+
+        available:
+          type: boolean
+
+      required:
+        - id
+        - date
+        - startTime
+        - endTime
+        - available
